@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+brew install vim --with-override-system-vi
+
+BASEPATH=$HOME/.vinavim
+
+if [ -e $BASEPATH/.git ]
+  then
+    cd $BASEPATH && git pull
+  else
+    git clone https://github.com/gekorob/vinavim.git $BASEPATH
+fi
+
+if [ ! -e $HOME/.vim/bundle/vundle ]; then
+  git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+fi
+
+ln -sf $BASEPATH/vimrc ~/.vimrc
+
+vim +PluginInstall! +PluginClean! +qall
