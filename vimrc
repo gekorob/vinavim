@@ -3,7 +3,7 @@ set nocompatible
 " Vundle
 
 filetype off
-set rpt+=~/.vim/bundle/vundle
+set rpt+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Bundles
