@@ -1,30 +1,26 @@
 set nocompatible
-
-" Vundle
-
 filetype off
-set rpt+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 
-" Bundles
-
-Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-markdown'
-Bundle 'pangloss/vim-javascript'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'epeli/slimux'
-Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'pangloss/vim-javascript'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'epeli/slimux'
+Plugin 'kien/rainbow_parentheses.vim'
 
 call vundle#end()
+filetype plugin indent on
 
 " General Config
 
@@ -243,6 +239,31 @@ autocmd FileType *
       \   silent! all SuperTabSetDefaultCompletionType("<c-x><c-u>") |
       \ endif
 
+"" Plugins settings
+
+" NERD Tree
+
+map <C-e> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
+
+let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeHighlightCursorline=1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeWinSize = 40
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+autocmd FileType *
+      \ if &omnifunc != '' |
+      \   silent! all SuperTabChain(&omnifunc, "<c-p>") |
+      \   silent! all SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+      \ endif
+
 " ack and grep
 
 map <leader>a :Ack!<space>
@@ -272,15 +293,6 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
-
-" Slimux
-
-map <Leader>s :SlimuxREPLSendLine<CR>
-vmap <Leader>s :SlimuxREPLSendSelection<CR>
-map <Leader>c :SlimuxShellLast<CR>
-map <Leader>k :SlimuxSendKeysLast<CR>
-
-let g:slimux_scheme_keybindings=1
 
 " Powerline
 
