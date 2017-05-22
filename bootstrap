@@ -17,7 +17,7 @@ if [ ! -e $HOME/.vim/bundle/vundle ]
   then
     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
   else
-    cd $HOME/.vim/bundle/vundle && git pull
+    cd $HOME/.vim/bundle/Vundle.vim && git pull
 fi
 
 ln -sf $BASEPATH/vimrc ~/.vimrc
