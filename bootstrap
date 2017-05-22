@@ -13,7 +13,7 @@ if [ -e $BASEPATH/.git ]
     git clone https://github.com/gekorob/vinavim.git $BASEPATH
 fi
 
-if [ ! -e $HOME/.vim/bundle/vundle ]
+if [ ! -e $HOME/.vim/bundle/Vundle.vim ]
   then
     git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
   else
