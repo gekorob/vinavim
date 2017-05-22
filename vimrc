@@ -239,31 +239,6 @@ autocmd FileType *
       \   silent! all SuperTabSetDefaultCompletionType("<c-x><c-u>") |
       \ endif
 
-"" Plugins settings
-
-" NERD Tree
-
-map <C-e> :NERDTreeToggle<CR>
-map <leader>n :NERDTreeToggle<CR>
-map <leader>f :NERDTreeFind<CR>
-
-let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeShowHidden=1
-let g:NERDTreeHighlightCursorline=1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeWinSize = 40
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-autocmd FileType *
-      \ if &omnifunc != '' |
-      \   silent! all SuperTabChain(&omnifunc, "<c-p>") |
-      \   silent! all SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-      \ endif
-
 " ack and grep
 
 map <leader>a :Ack!<space>
