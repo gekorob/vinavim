@@ -265,6 +265,12 @@ let g:ctrlp_use_caching = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_custom_ignore = {'dir': 'vendor/bundler$\|\.git$\|\.hg$\|\.svn$', 'file': '\.exe$\|\.so$\|\.dll$' }
+let g:ctrlp_prompt_mappings = {
+         \ 'AcceptSelection("e")': ['<c-t>'],
+         \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+         \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+         \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>']
+         \ }
 
 map <C-t> :CtrlPTag<CR>
 
@@ -275,6 +281,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_javascript_checkers = ['eslint']
 
 highlight link SyntasticErrorSign SignColumn
