@@ -5,6 +5,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'trusktr/seti.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
@@ -108,11 +109,7 @@ set wildmenu
 " Colors
 
 syntax enable
-set background=dark
-let g:solarized_termcolors=16
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-"colorscheme solarized
+colorscheme seti
 
 " Scrolling
 
@@ -244,6 +241,22 @@ autocmd FileType *
 map <leader>a :Ack!<space>
 let g:ackprg = 'rg --vimgrep'
 set grepprg=rg\ --vimgrep
+
+" NERDTreeGitPlugin
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
 
 " CtrlP
 
