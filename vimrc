@@ -242,22 +242,6 @@ map <leader>a :Ack!<space>
 let g:ackprg = 'rg --vimgrep'
 set grepprg=rg\ --vimgrep
 
-" NERDTreeGitPlugin
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-let g:NERDTreeShowIgnoredStatus = 1
-
 " CtrlP
 
 let g:ctrlp_user_command = 'rg %s --files --vimgrep --glob ""'
