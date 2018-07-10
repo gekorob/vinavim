@@ -274,6 +274,9 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 " Powerline
+if has('python3')
+  silent! python3 1
+endif
 
 python3 from powerline.vim import setup as powerline_setup
 python3 powerline_setup()
