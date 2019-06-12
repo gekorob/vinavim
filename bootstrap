@@ -2,8 +2,6 @@
 
 set -e
 
-brew install vim --with-override-system-vi
-
 BASEPATH=$HOME/.vinavim
 
 if [ -e $BASEPATH/.git ]
