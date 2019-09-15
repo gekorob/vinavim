@@ -33,7 +33,6 @@ Plug 'yegappan/greplace'
 
 Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM')}
 Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdcommenter'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -42,6 +41,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'majutsushi/tagbar'
 
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -119,6 +119,7 @@ set noesckeys
 set formatoptions-=or
 runtime macros/matchit.vim
 set rtp+=/home/rciatti/.fzf
+set maxmempattern=3000
 
 " Leader
 
