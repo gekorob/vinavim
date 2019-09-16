@@ -28,6 +28,7 @@ Plug 'trusktr/seti.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
+Plug 'christoomey/vim-system-copy'
 
 Plug 'yegappan/greplace'
 
@@ -95,16 +96,16 @@ set termencoding=utf-8
 set autoread
 set backspace=indent,eol,start
 set cursorline
-"set ruler                   " show the ruler
-"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+set ruler                   " show the ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
 set hidden
 set history=1000
-" set laststatus=2
-" set statusline=%<%f\    " Filename
-" set statusline+=%w%h%m%r " Options
-" set statusline+=\ [%{&ff}/%Y]            " filetype
-" set statusline+=\ [%{getcwd()}]          " current dir
-" set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+set laststatus=2
+set statusline=%<%f\    " Filename
+set statusline+=%w%h%m%r " Options
+set statusline+=\ [%{&ff}/%Y]            " filetype
+set statusline+=\ [%{getcwd()}]          " current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 set lazyredraw
 set number
 set showcmd
@@ -169,6 +170,9 @@ set list listchars=tab:»·,trail:·
 
 set wildmode=list:longest,full
 set wildmenu
+
+" CTAGS
+" ctags -R --exclude='.git' --exclude='node_modules'
 
 " Colors
 
@@ -273,11 +277,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Save as root even if not root
 
 cmap w!! %!sudo tee > /dev/null %
-
-" Tags
-
-"set tags=.git/tags,./tags,~/.vim/tags,~/.tags
-
 
 " Paste
 
@@ -420,7 +419,7 @@ let g:ctrlp_custom_ignore = {'dir': 'vendor/bundler$\|\.git$\|\.hg$\|\.svn$', 'f
          "\ }
 
 let g:ctrlp_map=''
-"map <C-t> :CtrlPTag<CR>
+" map <C-t> :CtrlPTag<CR>
 " ------------------
 
 " Tagbar
@@ -429,14 +428,25 @@ nmap <leader>O :TagbarToggle<cr>
 
 " FZF
 if executable("ag") && ('' == $FZF_DEFAULT_COMMAND)
-  let $FZF_DEFAULT_COMMAND = "ag --follow --nocolor --nogroup -g ''"
+  let $FZF_DEFAULT_COMMAND = "ag --follow --nocolor --nogroup -U --ignore-dir={.git,node_modules,log} --ignore '*.log' -g ''"
 endif
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
 
 nmap <leader>, :Files<cr>
 nmap <leader>k :Ag<cr>
 nmap <leader>l :Lines<cr>
 nmap <leader>t :Tags<cr>
 nmap <localleader>t :BTags<cr>
+" ------------------
+
+" Gutentags
+let g:gutentags_ctags_exclude=['node_modules', '.git', '*.log']
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 " ------------------
 
 " EditorConfig
