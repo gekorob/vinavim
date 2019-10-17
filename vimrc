@@ -267,10 +267,10 @@ endif
 
 " vim-airline
 let g:airline_theme = 'neodark'
-" let g:airline#extensions#branch#enabled = 1
-" let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 " let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 set noshowmode
@@ -484,7 +484,13 @@ nmap <localleader>t :BTags<cr>
 
 nmap <leader>y :History:<CR>
 
-nnoremap <silent> <Leader>rg :Rg <C-R><C-W><CR>
+nnoremap <silent> <Leader>f :Rg <C-R><C-W><CR>
+
+
+" Gutentags
+let g:gutentags_ctags_exclude=['node_modules', '.git', '*.log']
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+" ------------------
 
 " ale
 let g:ale_linters = {}
@@ -505,7 +511,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
-noremap <C-r> <C-w>r
+noremap <C-\> <C-w>r
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -705,12 +711,6 @@ let g:WebDevIconsOS = 'Linux'
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
-" ------------------
-
-
-" Gutentags
-let g:gutentags_ctags_exclude=['node_modules', '.git', '*.log']
-let g:gutentags_cache_dir = expand('~/.cache/tags')
 " ------------------
 
 " EditorConfig
