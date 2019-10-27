@@ -315,7 +315,7 @@ nnoremap <leader>s :%s//<left>
 
 
 " Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent> <leader>c :noh<cr>
 
 " Disable help key
 noremap  <F1> <NOP>
@@ -484,7 +484,8 @@ nmap <localleader>t :BTags<cr>
 
 nmap <leader>y :History:<CR>
 
-nnoremap <silent> <Leader>f :Rg <C-R><C-W><CR>
+nnoremap <silent> <Leader>K :Rg <C-R><C-W><CR>
+nnoremap <silent> <Leader>L :Lines <C-R><C-W><CR>
 
 
 " Gutentags
