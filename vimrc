@@ -44,6 +44,7 @@ Plug 'xolox/vim-session'
 "" ColorScheme plugins
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'trusktr/seti.vim'
+Plug 'jonathanfilip/vim-lucius'
 
 "" Airline
 Plug 'vim-airline/vim-airline'
@@ -201,7 +202,6 @@ set nowrap
 set noesckeys
 
 let no_buffers_menu=1
-silent! colorscheme neodark
 
 set mousemodel=popup
 set t_Co=256
@@ -238,6 +238,8 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+silent! colorscheme lucius
+LuciusDark
 
 "" Disable the blinking cursor.
 set gcr=a:blinkon0
@@ -266,7 +268,7 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'neodark'
+let g:airline_theme = 'lucius'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 " let g:airline#extensions#tabline#enabled = 1
