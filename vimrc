@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'christoomey/vim-system-copy'
 Plug 'vim-scripts/CSApprox'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -33,7 +34,7 @@ else
 endif
 let g:make = 'gmake'
 if exists('make')
-          let g:make = 'make'
+  let g:make = 'make'
 endif
 
 
@@ -332,7 +333,6 @@ inoremap  <Left>   <NOP>
 noremap   <Left>   <NOP>
 inoremap  <Right>  <NOP>
 noremap   <Right>  <NOP>
-noremap   <Right>  <NOP>
 
 " Disable useless stuff
 map Q <NOP>
@@ -470,11 +470,12 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+let g:fzf_preview_window = ''
 
-command! -bang -nargs=* Rg
+command! -bang -nargs=? Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:50%:hidden', '|')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '|'),
   \   <bang>0)
 
