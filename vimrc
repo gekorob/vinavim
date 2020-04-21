@@ -588,7 +588,7 @@ augroup go
   au FileType go nmap <leader>dr :GoDeclsDir<cr>
   au FileType go imap <C-g> <esc>:<C-u>GoDecls<cr>
   au FileType go imap <leader>dr <esc>:<C-u>GoDeclsDir<cr>
-  au FileType go nmap <leader>rb :<C-u>call <SID>build_go_files()<CR>
+  au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 augroup END
 
