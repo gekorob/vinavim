@@ -325,14 +325,18 @@ noremap  <F1> <NOP>
 inoremap <F1> <NOP>
 
 " Disable arrow keys
-inoremap  <Up>     <NOP>
-noremap   <Up>     <NOP>
-inoremap  <Down>   <NOP>
-noremap   <Down>   <NOP>
-inoremap  <Left>   <NOP>
-noremap   <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Right>  <NOP>
+nnoremap <silent> <ESC>OA <Nop>
+nnoremap <silent> <ESC>OB <Nop>
+nnoremap <silent> <ESC>OC <Nop>
+nnoremap <silent> <ESC>OD <Nop>
+inoremap <silent> <ESC>OA <Nop>
+inoremap <silent> <ESC>OB <Nop>
+inoremap <silent> <ESC>OC <Nop>
+inoremap <silent> <ESC>OD <Nop>
+vnoremap <silent> <ESC>OA <Nop>
+vnoremap <silent> <ESC>OB <Nop>
+vnoremap <silent> <ESC>OC <Nop>
+vnoremap <silent> <ESC>OD <Nop>
 
 " Disable useless stuff
 map Q <NOP>
