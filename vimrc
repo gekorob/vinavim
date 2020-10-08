@@ -29,7 +29,7 @@ Plug 'editorconfig/editorconfig-vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 endif
 let g:make = 'gmake'
@@ -72,6 +72,9 @@ Plug 'christoomey/vim-tmux-navigator'
 "" Golang
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
+"" Rust
+Plug 'rust-lang/rust.vim'
+
 "" HTML
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
@@ -91,7 +94,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
-Plug 'tpope/vim-projectionist'
 Plug 'thoughtbot/vim-rspec'
 Plug 'ecomba/vim-ruby-refactoring'
 
