@@ -604,6 +604,9 @@ augroup go
 
 augroup END
 
+" tpope markdown
+let g:markdown_fenced_languages = ['html', 'bash=sh', 'python']
+
 " Coc.nvim
 " Some servers have issues with backup files, see #649.
 set nobackup
