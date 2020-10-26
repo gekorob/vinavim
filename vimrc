@@ -19,6 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
+Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'editorconfig/editorconfig-vim'
 
@@ -85,6 +86,9 @@ Plug 'jelera/vim-javascript-syntax'
 
 "" Python
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+
+
+
 
 "" Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -270,7 +274,8 @@ endif
 " vim-airline
 let g:airline_theme = 'lucius'
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#enabled = 0
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
@@ -458,7 +463,7 @@ noremap <Leader>gsh :Gpush<CR>
 noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gvd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
 "" Opens an edit command with the path of the currently edited file filled in
@@ -513,6 +518,10 @@ let g:gutentags_ctags_exclude=['node_modules', '.git', '*.log']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 " ------------------
 
+" ale
+let g:ale_linters = {}
+let g:ale_disable_lsp = 1
+
 " Tagbar
 nmap <leader>O :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
@@ -538,6 +547,7 @@ vmap > >gv
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
+
 
 " go
 " vim-go
@@ -603,6 +613,10 @@ augroup go
   au FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 augroup END
+
+" ale
+:call extend(g:ale_linters, {
+    \"go": ['golint', 'go vet'], })
 
 " tpope markdown
 let g:markdown_fenced_languages = ['html', 'bash=sh', 'python']
@@ -692,6 +706,10 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" Formatting the whole buffer code.
+xmap <leader>F  <Plug>(coc-format)
+nmap <leader>F  <Plug>(coc-format)
 
 augroup mygroup
   autocmd!
@@ -783,6 +801,9 @@ augroup END
 
 " python
 " vim-python
+:call extend(g:ale_linters, {
+    \"python": ['pylint', 'flake8'], })
+
 augroup vimrc-python
   autocmd!
   autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
