@@ -23,6 +23,7 @@ Plug 'dense-analysis/ale'
 Plug 'Yggdroot/indentLine'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vim-test/vim-test'
+Plug 'mattn/webapi-vim'
 
 "" FZF
 if isdirectory('/usr/local/opt/fzf')
@@ -223,7 +224,7 @@ else
 
   " IndentLine
   let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
+  let g:vim_json_syntax_conceal = 0
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
@@ -279,16 +280,16 @@ let g:airline#extensions#coc#enabled = 0
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
-let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
-let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
+let g:airline#extensions#tabline#enabled = 1           " enable airline tabline
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline
 let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
-let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
-let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
-let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
-let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
-let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
-let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
-let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
+let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)
+let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab
+let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right
+let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline
+let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline
+let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline
+let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
 
 let g:airline#extensions#virtualenv#enabled = 1
@@ -455,6 +456,7 @@ set autoread
 
 "" Vim Test
 let test#python#runner = 'pytest'
+let test#rust#runner = 'cargotest'
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
@@ -557,6 +559,10 @@ vmap > >gv
 "" Custom configs
 "*****************************************************************************
 
+" rust
+" vim-rust
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'xclip -selection clipboard'
 
 " go
 " vim-go
@@ -570,7 +576,17 @@ function! s:build_go_files()
   endif
 endfunction
 
-let g:go_def_mapping_enabled = 0
+" disable all linters as that is taken care of by coc.nvim
+let g:go_diagnostics_enabled = 0
+let g:go_metalinter_enabled = []
+"
+" " don't jump to errors after metalinter is invoked
+let g:go_jump_to_error = 0
+
+" automatically highlight variable your cursor is on
+let g:go_auto_sameids = 0
+
+" let g:go_def_mapping_enabled = 0
 
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
@@ -612,8 +628,12 @@ augroup go
 
   au FileType go nmap <leader>r  <Plug>(go-run)
   au FileType go nmap <leader>t  <Plug>(go-test)
+  au FileType go nmap <leader>tt <Plug>(go-test-func)
   au FileType go nmap <Leader>gt <Plug>(go-coverage-toggle)
-  au FileType go nmap <Leader>i <Plug>(go-info)
+  au FileType go nmap <Leader>i  <Plug>(go-info)
+  au FileType go nmap <Leader>ii <Plug>(go-implements)
+  au FileType go nmap <Leader>ci <Plug>(go-describe)
+  au FileType go nmap <Leader>cc <Plug>(go-callers)
   au FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
   au FileType go nmap <C-g> :GoDecls<cr>
   au FileType go nmap <leader>dr :GoDeclsDir<cr>
@@ -696,7 +716,7 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" nmap <silent> 
+" nmap <silent>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
