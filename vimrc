@@ -532,6 +532,7 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 " ale
 let g:ale_linters = {}
 let g:ale_disable_lsp = 1
+let g:ale_python_flake8_options = '--max-line-length=100'
 
 " Tagbar
 nmap <leader>O :TagbarToggle<cr>
